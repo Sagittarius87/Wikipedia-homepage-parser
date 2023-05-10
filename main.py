@@ -20,17 +20,17 @@ def get_data(html):
     soup_of_html = BeautifulSoup(html, 'lxml')
 
     
-    div_main_box_subtitle = soup_of_html.find('div', id='main-tfa').find('div').text
-    h2_main_header_main_box_header = soup_of_html.find('div', id='main-tfa').find('h2').find('span', class_='mw-headline').find('a').text
-    p = soup_of_html.find('div', id='main-tfa').find('p').text
+    selected_article = soup_of_html.find('div', id='main-tfa').find('div').text
+    article_title = soup_of_html.find('div', id='main-tfa').find('h2').find('span', class_='mw-headline').find('a').text
+    article_text = soup_of_html.find('div', id='main-tfa').find('p').text
     
     print('---')
-    print(div_main_box_subtitle)
-    print(h2_main_header_main_box_header)
-    print(p)
+    print(selected_article)
+    print(article_title)
+    print(article_text)
     print('---')
     
-    return div_main_box_subtitle
+    return selected_article
 
 # Основная функция, отправляющая запрос и разбирающая полученные данные из html кода
 def main():
