@@ -27,6 +27,8 @@ def get_data(html):
     for p in get_article_text:
         artical_text = p.text
         print(artical_text)
+    number_of_selected_articles = soup_of_html.find('span', class_='nomobile').text
+    print(number_of_selected_articles.split(' ')[1])
 
 
 
