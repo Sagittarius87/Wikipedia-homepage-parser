@@ -61,6 +61,15 @@ def get_data(html):
     previous_favorites_list = soup_of_html.find('div', id='main-tfl').find_all('h2')[1].text.lstrip()
     print(previous_favorites_list)
 
+    print('------------------------------')
+
+    image_of_day_title = soup_of_html.find('div', id='main-potd').find('span', id='Изображение_дня').text
+    print(image_of_day_title)
+    image_of_day_alt = soup_of_html.find('div', id='main-potd').find('img').get('alt')
+    print(image_of_day_alt)
+    image_of_day_src = soup_of_html.find('div', id='main-potd').find('img').get('src')
+    print(image_of_day_src)
+
 
     return selected_article
 
