@@ -14,6 +14,13 @@ def get_html(url):
     resp = requests.get(url)
     return resp.text
 
+# Поиск всех видимых на главной станице абзацев статей
+def get_all_paragraphs(get_article_text):
+    all_paragraphs_text = ''
+    for p in get_article_text:
+        all_paragraphs_text = all_paragraphs_text + '\n' + p.text
+    return all_paragraphs_text
+
 # Создание экземпляра класса, содержащего данные из полученного html кода страницы, и поиск нужных элементов
 def get_data(html):
     print('get_data start')
@@ -24,9 +31,7 @@ def get_data(html):
     selected_article_title = soup_of_html.find('div', id='main-tfa').find('h2').find('span', class_='mw-headline').find('a').text
     print(selected_article_title)
     get_article_text = soup_of_html.find('div', id='main-tfa').find_all('p')
-    for p in get_article_text:
-        artical_text = p.text
-        print(artical_text)
+    print(get_all_paragraphs(get_article_text))
     number_of_selected_articles = soup_of_html.find('span', class_='nomobile').text
     print(number_of_selected_articles.split(' ')[1])
 
