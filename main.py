@@ -32,7 +32,7 @@ def get_data(html):
     print(selected_article_title)
     get_selected_article_text = soup_of_html.find('div', id='main-tfa').find_all('p')
     print(get_all_paragraphs(get_selected_article_text))
-    number_of_selected_articles = soup_of_html.find('span', class_='nomobile').text
+    number_of_selected_articles = soup_of_html.find('div', id='main-tfa').find('span', class_='mw-ui-button mw-ui-quiet').text
     print(number_of_selected_articles.split(' ')[1])
 
     print('------------------------------')
