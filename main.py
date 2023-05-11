@@ -30,8 +30,8 @@ def get_data(html):
     print(selected_article)
     selected_article_title = soup_of_html.find('div', id='main-tfa').find('h2').find('span', class_='mw-headline').find('a').text
     print(selected_article_title)
-    get_article_text = soup_of_html.find('div', id='main-tfa').find_all('p')
-    print(get_all_paragraphs(get_article_text))
+    get_selected_article_text = soup_of_html.find('div', id='main-tfa').find_all('p')
+    print(get_all_paragraphs(get_selected_article_text))
     number_of_selected_articles = soup_of_html.find('span', class_='nomobile').text
     print(number_of_selected_articles.split(' ')[1])
 
@@ -41,6 +41,7 @@ def get_data(html):
     print(good_article)
     good_article_title = soup_of_html.find('div', id='main-tga').find('h2').find('span', class_='mw-headline').find('a').text
     print(good_article_title)
+
 
 
     return selected_article
