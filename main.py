@@ -21,6 +21,10 @@ def get_all_paragraphs(get_article_text):
         all_paragraphs_text = all_paragraphs_text + '\n' + p.text
     return all_paragraphs_text
 
+# Извлечения колличества статей из найденной строки
+def get_number_of_aricles(line_with_number):
+    return line_with_number.split(' ')[1]
+
 # Создание экземпляра класса, содержащего данные из полученного html кода страницы, и поиск нужных элементов
 def get_data(html):
     print('get_data start')
@@ -33,7 +37,7 @@ def get_data(html):
     get_selected_article_text = soup_of_html.find('div', id='main-tfa').find_all('p')
     print(get_all_paragraphs(get_selected_article_text))
     number_of_selected_articles = soup_of_html.find('div', id='main-tfa').find('span', class_='mw-ui-button mw-ui-quiet').text
-    print(number_of_selected_articles.split(' ')[1])
+    print(get_number_of_aricles(number_of_selected_articles))
 
     print('------------------------------')
 
@@ -43,6 +47,8 @@ def get_data(html):
     print(good_article_title)
     get_good_article_text = soup_of_html.find('div', id='main-tga').find_all('p')
     print(get_all_paragraphs(get_good_article_text))
+    number_of_good_articles = soup_of_html.find('div', id='main-tga').find('span', class_='mw-ui-button mw-ui-quiet').text
+    print(get_number_of_aricles(number_of_good_articles))
 
 
 
