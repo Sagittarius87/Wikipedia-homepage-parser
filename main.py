@@ -41,6 +41,8 @@ def get_data(html):
     print(good_article)
     good_article_title = soup_of_html.find('div', id='main-tga').find('h2').find('span', class_='mw-headline').find('a').text
     print(good_article_title)
+    get_good_article_text = soup_of_html.find('div', id='main-tga').find_all('p')
+    print(get_all_paragraphs(get_good_article_text))
 
 
 
