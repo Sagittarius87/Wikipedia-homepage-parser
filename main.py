@@ -50,6 +50,16 @@ def get_data(html):
     number_of_good_articles = soup_of_html.find('div', id='main-tga').find('span', class_='mw-ui-button mw-ui-quiet').text
     print(get_number_of_aricles(number_of_good_articles))
 
+    print('------------------------------')
+
+    last_favorites_list_title = soup_of_html.find('div', id='main-tfl').find_all('span')[0].text
+    print(last_favorites_list_title)
+    last_favorites_list = soup_of_html.find('div', id='main-tfl').find_all('h2')[0].text.lstrip()
+    print(last_favorites_list)
+    previous_favorites_list_title = soup_of_html.find('div', id='main-tfl').find_all('span')[1].text
+    print(previous_favorites_list_title)
+    previous_favorites_list = soup_of_html.find('div', id='main-tfl').find_all('h2')[1].text.lstrip()
+    print(previous_favorites_list)
 
 
     return selected_article
