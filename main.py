@@ -70,6 +70,22 @@ def get_data(html):
     image_of_day_src = soup_of_html.find('div', id='main-potd').find('img').get('src')
     print(image_of_day_src)
 
+    print('------------------------------')
+
+    from_new_materials_title = soup_of_html.find('div', id='main-dyk').find('div').text
+    print(from_new_materials_title)
+    do_you_know_title = soup_of_html.find('div', id='main-dyk').find('span', id='Знаете_ли_вы?').text
+    print(do_you_know_title)
+    do_you_know_list = soup_of_html.find('div', id='main-dyk').find_all('ul') #[0].text
+    
+    all_list = ''
+    for l in do_you_know_list:
+        all_list = all_list + l.text + '\n'
+    all_list = all_list.replace('Обсудить', '').replace('Предложения', '').replace('Архив', '').replace('Просмотр шаблона', '').rstrip()
+    print(all_list)
+
+    print('------------------------------')
+
 
     return selected_article
 
