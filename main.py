@@ -11,7 +11,19 @@ from bs4 import BeautifulSoup
 # Отправка запроса для получения html кода главной страницы
 def get_html(url):
     print('get_html start')
-    resp = requests.get(url)
+    headers = {
+    'User-Agent': 'My User Agent 1.0',
+    'From': 'Jarik-87@yandex.ru'  
+    }
+    http_proxy  = "http://10.10.1.10:3128"
+    https_proxy = "https://10.10.1.11:1080"
+    ftp_proxy   = "ftp://10.10.1.10:3128"
+    proxies = {
+              "http"  : http_proxy,
+              "https" : https_proxy,
+              "ftp"   : ftp_proxy
+            }   
+    resp = requests.get(url, headers=headers, proxies=proxies)
     return resp.text
 
 # Поиск всех видимых на главной станице абзацев статей
@@ -60,7 +72,7 @@ def get_data(html):
     print(previous_favorites_list_title)
     previous_favorites_list = soup_of_html.find('div', id='main-tfl').find_all('h2')[1].text.lstrip()
     print(previous_favorites_list)
-
+    
     print('------------------------------')
 
     image_of_day_title = soup_of_html.find('div', id='main-potd').find('span', id='Изображение_дня').text
@@ -85,7 +97,7 @@ def get_data(html):
     print(all_list)
 
     print('------------------------------')
-
+    
 
     return selected_article
 
