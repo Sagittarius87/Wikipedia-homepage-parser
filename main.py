@@ -11,19 +11,20 @@ from bs4 import BeautifulSoup
 # Отправка запроса для получения html кода главной страницы
 def get_html(url):
     print('get_html start')
-    headers = {
-    'User-Agent': 'My User Agent 1.0',
-    'From': 'Jarik-87@yandex.ru'  
-    }
-    http_proxy  = "http://10.10.1.10:3128"
-    https_proxy = "https://10.10.1.11:1080"
-    ftp_proxy   = "ftp://10.10.1.10:3128"
-    proxies = {
-              "http"  : http_proxy,
-              "https" : https_proxy,
-              "ftp"   : ftp_proxy
-            }   
-    resp = requests.get(url, headers=headers, proxies=proxies)
+    #headers = {
+    #'User-Agent': 'My User Agent 1.0',
+    #'From': 'Jarik-87@yandex.ru'  
+    #}
+    #http_proxy  = "http://10.10.1.10:3128"
+    #https_proxy = "https://10.10.1.11:1080"
+    #ftp_proxy   = "ftp://10.10.1.10:3128"
+    #proxies = {
+    #          "http"  : http_proxy,
+    #          "https" : https_proxy,
+    #          "ftp"   : ftp_proxy
+    #        }   
+    #resp = requests.get(url, headers=headers, proxies=proxies)
+    resp = requests.get(url)
     return resp.text
 
 # Поиск всех видимых на главной станице абзацев статей
@@ -97,7 +98,21 @@ def get_data(html):
     print(all_list)
 
     print('------------------------------')
-    
+
+    current_events_title = soup_of_html.find('span', id='Текущие_события').text
+    current_topics_title = soup_of_html.find('div', class_='hlist').find('dl').find('dt').text
+    current_topics_list = soup_of_html.find('div', class_='hlist').find('dl').find_all('dd')
+    print(current_events_title)
+    print(current_topics_title)
+    print(current_topics_list) 
+
+    #def get_all_list(geted_list):
+    #    result_list  = ''
+    #    for element_of_list in geted_list:
+    #        result_list = result_list + element_of_list.text + '\n'
+    #    return result_list
+
+    #print(get_all_list(current_topics_list))   
 
     return selected_article
 
