@@ -34,6 +34,13 @@ def get_all_paragraphs(get_article_text):
         all_paragraphs_text = all_paragraphs_text + '\n' + p.text
     return all_paragraphs_text
 
+# Получение текстовых данных из списков
+def get_all_list(geted_list):
+        result_list  = ''
+        for element_of_list in geted_list:
+            result_list = result_list + element_of_list.text + '\n'
+        return result_list
+
 # Извлечения колличества статей из найденной строки
 def get_number_of_aricles(line_with_number):
     return line_with_number.split(' ')[1]
@@ -106,13 +113,9 @@ def get_data(html):
     print(current_topics_title)
     print(current_topics_list) 
 
-    #def get_all_list(geted_list):
-    #    result_list  = ''
-    #    for element_of_list in geted_list:
-    #        result_list = result_list + element_of_list.text + '\n'
-    #    return result_list
-
-    #print(get_all_list(current_topics_list))   
+    final_list_of_current_topics = get_all_list(current_topics_list)
+    final_list_of_current_topics = final_list_of_current_topics.replace(' | Недавно умершие', '')
+    print(final_list_of_current_topics)   
 
     return selected_article
 
