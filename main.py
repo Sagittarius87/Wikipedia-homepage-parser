@@ -98,6 +98,7 @@ def get_data(html):
     print(do_you_know_title)
     do_you_know_list = soup_of_html.find('div', id='main-dyk').find_all('ul') #[0].text
     
+    # заменить на функцию get_all_list
     all_list = ''
     for l in do_you_know_list:
         all_list = all_list + l.text + '\n'
@@ -107,15 +108,15 @@ def get_data(html):
     print('------------------------------')
 
     current_events_title = soup_of_html.find('span', id='Текущие_события').text
-    current_topics_title = soup_of_html.find('div', class_='hlist').find('dl').find('dt').text
-    current_topics_list = soup_of_html.find('div', class_='hlist').find('dl').find_all('dd')
     print(current_events_title)
+    current_topics_title = soup_of_html.find('div', class_='hlist').find('dl').find('dt').text
     print(current_topics_title)
-    print(current_topics_list) 
-
+    current_topics_list = soup_of_html.find('div', class_='hlist').find('dl').find_all('dd')
     final_list_of_current_topics = get_all_list(current_topics_list)
     final_list_of_current_topics = final_list_of_current_topics.replace(' | Недавно умершие', '')
-    print(final_list_of_current_topics)   
+    print(final_list_of_current_topics)
+    curret_events_list = soup_of_html.find('div', id='main-cur').find('ul').find_all('li')
+    print(curret_events_list)   
 
     return selected_article
 
