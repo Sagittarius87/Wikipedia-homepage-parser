@@ -99,11 +99,12 @@ def get_data(html):
     do_you_know_list = soup_of_html.find('div', id='main-dyk').find_all('ul') #[0].text
     
     # заменить на функцию get_all_list
-    all_list = ''
-    for l in do_you_know_list:
-        all_list = all_list + l.text + '\n'
-    all_list = all_list.replace('Обсудить', '').replace('Предложения', '').replace('Архив', '').replace('Просмотр шаблона', '').rstrip()
-    print(all_list)
+    #all_list = ''
+    #for l in do_you_know_list:
+    #    all_list = all_list + l.text + '\n'
+    final_list_of_do_you_know = get_all_list(do_you_know_list)
+    final_list_of_do_you_know = final_list_of_do_you_know.replace('Обсудить', '').replace('Предложения', '').replace('Архив', '').replace('Просмотр шаблона', '').rstrip()
+    print(final_list_of_do_you_know)
 
     print('------------------------------')
 
