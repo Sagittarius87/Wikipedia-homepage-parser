@@ -122,6 +122,9 @@ def get_data(html):
     print(on_this_day_title)
     current_day_date = soup_of_html.find('div', id='main-itd').find('h2').find_all('span')[1].text
     print(current_day_date)
+    of_this_day_list = soup_of_html.find('div', id='main-itd').find('ul').find_all('li')
+    final_list_on_of_this_day = get_all_list(of_this_day_list)
+    print(final_list_on_of_this_day)
     
 
 
