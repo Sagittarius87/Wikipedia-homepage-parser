@@ -120,6 +120,10 @@ def get_data(html):
 
     on_this_day_title = soup_of_html.find('div', id='main-itd').find('div').text
     print(on_this_day_title)
+    current_day_date = soup_of_html.find('div', id='main-itd').find('h2').find_all('span')[1].text
+    print(current_day_date)
+    
+
 
     return selected_article
 
