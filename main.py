@@ -54,10 +54,19 @@ def get_data(html):
     print(selected_article)
     selected_article_title = soup_of_html.find('div', id='main-tfa').find('h2').find('span', class_='mw-headline').find('a').text
     print(selected_article_title)
-    get_selected_article_text = soup_of_html.find('div', id='main-tfa').find_all('p')
-    print(get_all_paragraphs(get_selected_article_text))
+    selected_article_text = soup_of_html.find('div', id='main-tfa').find_all('p')
+    final_text_on_selected_article = get_all_paragraphs(selected_article_text)
+    print(final_text_on_selected_article)
     number_of_selected_articles = soup_of_html.find('div', id='main-tfa').find('span', class_='mw-ui-button mw-ui-quiet').text
-    print(get_number_of_aricles(number_of_selected_articles))
+    final_number_of_selected_articles = get_number_of_aricles(number_of_selected_articles)
+    print(final_number_of_selected_articles)
+    #selected_article_data = {
+    #    'Загаловок раздела': selected_article,
+    #    'Название избранной статьи': selected_article_title,
+    #    'Тект избранной статьи': selected_article_text,
+    #    'Колличество избранных статей': number_of_selected_articles
+    #}
+    #print(selected_article_data)
 
     print('------------------------------')
 
@@ -65,8 +74,8 @@ def get_data(html):
     print(good_article)
     good_article_title = soup_of_html.find('div', id='main-tga').find('h2').find('span', class_='mw-headline').find('a').text
     print(good_article_title)
-    get_good_article_text = soup_of_html.find('div', id='main-tga').find_all('p')
-    print(get_all_paragraphs(get_good_article_text))
+    good_article_text = soup_of_html.find('div', id='main-tga').find_all('p')
+    print(get_all_paragraphs(good_article_text))
     number_of_good_articles = soup_of_html.find('div', id='main-tga').find('span', class_='mw-ui-button mw-ui-quiet').text
     print(get_number_of_aricles(number_of_good_articles))
 
@@ -122,10 +131,12 @@ def get_data(html):
     print(on_this_day_title)
     current_day_date = soup_of_html.find('div', id='main-itd').find('h2').find_all('span')[1].text
     print(current_day_date)
-    of_this_day_list = soup_of_html.find('div', id='main-itd').find('ul').find_all('li')
-    final_list_on_of_this_day = get_all_list(of_this_day_list)
-    print(final_list_on_of_this_day)
+    on_this_day_list = soup_of_html.find('div', id='main-itd').find('ul').find_all('li')
+    final_list_of_on_this_day = get_all_list(on_this_day_list)
+    print(final_list_of_on_this_day)
     
+    print('------------------------------')
+
 
 
     return selected_article
