@@ -60,13 +60,13 @@ def get_data(html):
     number_of_selected_articles = soup_of_html.find('div', id='main-tfa').find('span', class_='mw-ui-button mw-ui-quiet').text
     final_number_of_selected_articles = get_number_of_aricles(number_of_selected_articles)
     print(final_number_of_selected_articles)
-    #selected_article_data = {
-    #    'Загаловок раздела': selected_article,
-    #    'Название избранной статьи': selected_article_title,
-    #    'Тект избранной статьи': selected_article_text,
-    #    'Колличество избранных статей': number_of_selected_articles
-    #}
-    #print(selected_article_data)
+    selected_article_data = {
+        'Загаловок раздела': selected_article,
+        'Название избранной статьи': selected_article_title,
+        'Тект избранной статьи': final_text_on_selected_article,
+        'Колличество избранных статей': final_number_of_selected_articles
+    }
+    print(selected_article_data)
 
     print('------------------------------')
 
