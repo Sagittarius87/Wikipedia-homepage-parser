@@ -98,6 +98,13 @@ def get_data(html):
     print(previous_favorites_list_title)
     previous_favorites_list = soup_of_html.find('div', id='main-tfl').find_all('h2')[1].text.lstrip()
     print(previous_favorites_list)
+    favorites_list_data = {
+        'Первый загаловок раздела': last_favorites_list_title,
+        'Последний избранный список': last_favorites_list,
+        'Второй заголовок раздела': previous_favorites_list_title,
+        'Предыдущий избранный список': previous_favorites_list
+    }
+    print(favorites_list_data)
     
     print('------------------------------')
 
@@ -107,6 +114,15 @@ def get_data(html):
     print(image_of_day_alt)
     image_of_day_src = soup_of_html.find('div', id='main-potd').find('img').get('src')
     print(image_of_day_src)
+    image_of_day_text = soup_of_html.find('div', id='main-potd').find('p').text
+    print(image_of_day_text)
+    image_of_day_data = {
+        'Загаловок раздела': image_of_day_title,
+        'Название изображения': image_of_day_alt,
+        'Ссылка': image_of_day_src,
+        'Описпние': image_of_day_text
+    }
+    print(image_of_day_data)
 
     print('------------------------------')
 
