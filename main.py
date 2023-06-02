@@ -130,11 +130,16 @@ def get_data(html):
     print(from_new_materials_title)
     do_you_know_title = soup_of_html.find('div', id='main-dyk').find('span', id='Знаете_ли_вы?').text
     print(do_you_know_title)
-    do_you_know_list = soup_of_html.find('div', id='main-dyk').find_all('ul') #[0].text
-    
+    do_you_know_list = soup_of_html.find('div', id='main-dyk').find_all('ul')
     final_list_of_do_you_know = get_all_list(do_you_know_list)
     final_list_of_do_you_know = final_list_of_do_you_know.replace('Обсудить', '').replace('Предложения', '').replace('Архив', '').replace('Просмотр шаблона', '').rstrip()
     print(final_list_of_do_you_know)
+    from_new_materials_data = {
+        'Загаловок раздела': from_new_materials_title,
+        'Подзагаловок': do_you_know_title,
+        'Список материалов': final_list_of_do_you_know
+    }
+    print(from_new_materials_data)
 
     print('------------------------------')
 
