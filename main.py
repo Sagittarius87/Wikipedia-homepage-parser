@@ -153,7 +153,14 @@ def get_data(html):
     print(final_list_of_current_topics)
     curret_events_list = soup_of_html.find('div', id='main-cur').find('ul').find_all('li')
     final_list_of_current_events = get_all_list(curret_events_list)
-    print(final_list_of_current_events)   
+    print(final_list_of_current_events)
+    current_events_data = {
+        'Загаловок раздела': current_events_title,
+        'Подзаголовок': current_topics_title,
+        'Актуальные темы': final_list_of_current_topics,
+        'Текущие события': final_list_of_current_events
+    }
+    print(current_events_data)   
 
     print('------------------------------')
 
@@ -164,6 +171,12 @@ def get_data(html):
     on_this_day_list = soup_of_html.find('div', id='main-itd').find('ul').find_all('li')
     final_list_of_on_this_day = get_all_list(on_this_day_list)
     print(final_list_of_on_this_day)
+    on_this_day_data = {
+        'Загаловок раздела': on_this_day_title,
+        'Текущая дата': current_day_date,
+        'События за текущую дату': final_list_of_on_this_day
+    }
+    print(on_this_day_data)
     
     print('------------------------------')
 
