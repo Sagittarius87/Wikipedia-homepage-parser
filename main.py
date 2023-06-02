@@ -55,15 +55,15 @@ def get_data(html):
     selected_article_title = soup_of_html.find('div', id='main-tfa').find('h2').find('span', class_='mw-headline').find('a').text
     print(selected_article_title)
     selected_article_text = soup_of_html.find('div', id='main-tfa').find_all('p')
-    final_text_on_selected_article = get_all_paragraphs(selected_article_text)
-    print(final_text_on_selected_article)
+    final_text_of_selected_article = get_all_paragraphs(selected_article_text)
+    print(final_text_of_selected_article)
     number_of_selected_articles = soup_of_html.find('div', id='main-tfa').find('span', class_='mw-ui-button mw-ui-quiet').text
     final_number_of_selected_articles = get_number_of_aricles(number_of_selected_articles)
     print(final_number_of_selected_articles)
     selected_article_data = {
         'Загаловок раздела': selected_article,
         'Название избранной статьи': selected_article_title,
-        'Тект избранной статьи': final_text_on_selected_article,
+        'Тект избранной статьи': final_text_of_selected_article,
         'Колличество избранных статей': final_number_of_selected_articles
     }
     print(selected_article_data)
@@ -75,9 +75,18 @@ def get_data(html):
     good_article_title = soup_of_html.find('div', id='main-tga').find('h2').find('span', class_='mw-headline').find('a').text
     print(good_article_title)
     good_article_text = soup_of_html.find('div', id='main-tga').find_all('p')
-    print(get_all_paragraphs(good_article_text))
+    final_text_of_good_article = get_all_paragraphs(good_article_text) 
+    print(final_text_of_good_article)
     number_of_good_articles = soup_of_html.find('div', id='main-tga').find('span', class_='mw-ui-button mw-ui-quiet').text
-    print(get_number_of_aricles(number_of_good_articles))
+    final_number_of_good_articles = get_number_of_aricles(number_of_good_articles) 
+    print(final_number_of_good_articles)
+    good_article_data = {
+        'Загаловок раздела': good_article,
+        'Название хорошей статьи': good_article_title,
+        'Текст хорошей статьи': final_text_of_good_article,
+        'Колличество хороших статей': final_number_of_good_articles
+    }
+    print(good_article_data)
 
     print('------------------------------')
 
