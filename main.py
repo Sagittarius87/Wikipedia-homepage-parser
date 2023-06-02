@@ -182,13 +182,15 @@ def get_data(html):
 
 
 
-    return selected_article
+    return [selected_article_data, good_article_data, favorites_list_data, image_of_day_data, from_new_materials_data, current_events_data, on_this_day_data]
 
 # Основная функция, отправляющая запрос и разбирающая полученные данные из html кода
 def main():
     print('main start')
+    found_data = []
     url = 'https://ru.wikipedia.org/wiki/Заглавная_страница'
-    get_data(get_html(url))
+    found_data = get_data(get_html(url))
+    print(found_data)
 
 
 # Проверка значения __name__ при запуске исходного файла как основной программы и запуск функции main() в случае True
