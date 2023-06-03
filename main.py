@@ -1,7 +1,9 @@
+import csv
 from pydoc import classname
 from unittest.main import main
 import requests
 from bs4 import BeautifulSoup
+import datetime
 
 
 # Парсер главной страницы википедии
@@ -31,7 +33,7 @@ def get_html(url):
 def get_all_paragraphs(get_article_text):
     all_paragraphs_text = ''
     for p in get_article_text:
-        all_paragraphs_text = all_paragraphs_text + '\n' + p.text
+        all_paragraphs_text = all_paragraphs_text + p.text
     return all_paragraphs_text
 
 # Получение текстовых данных из списков
@@ -44,6 +46,17 @@ def get_all_list(geted_list):
 # Извлечения колличества статей из найденной строки
 def get_number_of_aricles(line_with_number):
     return line_with_number.split(' ')[1]
+
+def save_to_file(found_data):
+    with open('data found.csv', 'a', encoding='utf-8') as csv_file:
+        current_date = datetime.date.today()
+        csv_file.write(str(current_date))
+        csv_file.write('\n')
+        for list_element in found_data:
+            for key in list_element:
+                csv_file.write(f"{key}: {list_element.get(key)}\n")
+            csv_file.write('\n')    
+    
 
 # Создание экземпляра класса, содержащего данные из полученного html кода страницы, и поиск нужных элементов
 def get_data(html):
@@ -187,11 +200,11 @@ def get_data(html):
 # Основная функция, отправляющая запрос и разбирающая полученные данные из html кода
 def main():
     print('main start')
-    found_data = []
     url = 'https://ru.wikipedia.org/wiki/Заглавная_страница'
     found_data = get_data(get_html(url))
-    print(found_data)
+    save_to_file(found_data)
 
+    
 
 # Проверка значения __name__ при запуске исходного файла как основной программы и запуск функции main() в случае True
 if __name__ == '__main__':
