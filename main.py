@@ -30,6 +30,7 @@ def get_all_list(geted_list):
 def get_number_of_aricles(line_with_number):
     return line_with_number.split(' ')[1]
 
+# Запись найденных данных в файл
 def save_to_file(found_data):
     with open('data found.csv', 'a', encoding='utf-8') as csv_file:
         current_date = datetime.date.today()
@@ -43,7 +44,8 @@ def save_to_file(found_data):
 # Создание экземпляра класса, содержащего данные из полученного html кода страницы, и поиск нужных элементов
 def get_data(html):
     soup_of_html = BeautifulSoup(html, 'lxml')
-    
+
+    # Сбор данных в разделе Избранная статья 
     selected_article = soup_of_html.find('div', id='main-tfa').find('div').text
     selected_article_title = soup_of_html.find('div', id='main-tfa').find('h2').find('span', class_='mw-headline').find('a').text
     selected_article_text = soup_of_html.find('div', id='main-tfa').find_all('p')
@@ -53,10 +55,11 @@ def get_data(html):
     selected_article_data = {
         'Загаловок раздела': selected_article,
         'Название избранной статьи': selected_article_title,
-        'Тект избранной статьи': final_text_of_selected_article,
+        'Текcт избранной статьи': final_text_of_selected_article,
         'Колличество избранных статей': final_number_of_selected_articles
     }
     
+    # Сбор данных в разделе Хорошая статья
     good_article = soup_of_html.find('div', id='main-tga').find('div').text 
     good_article_title = soup_of_html.find('div', id='main-tga').find('h2').find('span', class_='mw-headline').find('a').text
     good_article_text = soup_of_html.find('div', id='main-tga').find_all('p')
@@ -70,6 +73,7 @@ def get_data(html):
         'Колличество хороших статей': final_number_of_good_articles
     }
     
+    # Сбор данных в разделе Избранные списки
     last_favorites_list_title = soup_of_html.find('div', id='main-tfl').find_all('span')[0].text
     last_favorites_list = soup_of_html.find('div', id='main-tfl').find_all('h2')[0].text.lstrip()
     previous_favorites_list_title = soup_of_html.find('div', id='main-tfl').find_all('span')[1].text
@@ -80,7 +84,8 @@ def get_data(html):
         'Второй заголовок раздела': previous_favorites_list_title,
         'Предыдущий избранный список': previous_favorites_list
     }
-        
+
+    # Сбор данных в разделе Изображение дня        
     image_of_day_title = soup_of_html.find('div', id='main-potd').find('span', id='Изображение_дня').text
     image_of_day_alt = soup_of_html.find('div', id='main-potd').find('img').get('alt')
     image_of_day_src = soup_of_html.find('div', id='main-potd').find('img').get('src')
@@ -89,9 +94,10 @@ def get_data(html):
         'Загаловок раздела': image_of_day_title,
         'Название изображения': image_of_day_alt,
         'Ссылка': image_of_day_src,
-        'Описпние': image_of_day_text
+        'Описание': image_of_day_text
     }
     
+    # Сбор данных в разделе Из новых материалов
     from_new_materials_title = soup_of_html.find('div', id='main-dyk').find('div').text
     do_you_know_title = soup_of_html.find('div', id='main-dyk').find('span', id='Знаете_ли_вы?').text
     do_you_know_list = soup_of_html.find('div', id='main-dyk').find_all('ul')
@@ -103,6 +109,7 @@ def get_data(html):
         'Список материалов': final_list_of_do_you_know
     }
     
+    # Сбор данных в разделе Текущие события
     current_events_title = soup_of_html.find('span', id='Текущие_события').text
     current_topics_title = soup_of_html.find('div', class_='hlist').find('dl').find('dt').text
     current_topics_list = soup_of_html.find('div', class_='hlist').find('dl').find_all('dd')
@@ -117,6 +124,7 @@ def get_data(html):
         'Текущие события': final_list_of_current_events
     }
     
+    # Сбор данных в разделе В этот день
     on_this_day_title = soup_of_html.find('div', id='main-itd').find('div').text
     current_day_date = soup_of_html.find('div', id='main-itd').find('h2').find_all('span')[1].text
     on_this_day_list = soup_of_html.find('div', id='main-itd').find('ul').find_all('li')
