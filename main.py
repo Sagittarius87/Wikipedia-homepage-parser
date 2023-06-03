@@ -10,19 +10,6 @@ import datetime
 # Отправка запроса для получения html кода главной страницы
 def get_html(url):
     print('get_html start')
-    #headers = {
-    #'User-Agent': 'My User Agent 1.0',
-    #'From': 'Jarik-87@yandex.ru'  
-    #}
-    #http_proxy  = "http://10.10.1.10:3128"
-    #https_proxy = "https://10.10.1.11:1080"
-    #ftp_proxy   = "ftp://10.10.1.10:3128"
-    #proxies = {
-    #          "http"  : http_proxy,
-    #          "https" : https_proxy,
-    #          "ftp"   : ftp_proxy
-    #        }   
-    #resp = requests.get(url, headers=headers, proxies=proxies)
     resp = requests.get(url)
     return resp.text
 
