@@ -91,7 +91,7 @@ def get_data(html):
     final_text_of_good_article = get_all_paragraphs(good_article_text) 
     print(final_text_of_good_article)
     number_of_good_articles = soup_of_html.find('div', id='main-tga').find('span', class_='mw-ui-button mw-ui-quiet').text
-    final_number_of_good_articles = get_number_of_aricles(number_of_good_articles) 
+    final_number_of_good_articles = number_of_good_articles.split(' ')[0] 
     print(final_number_of_good_articles)
     good_article_data = {
         'Загаловок раздела': good_article,
