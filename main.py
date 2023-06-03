@@ -1,6 +1,3 @@
-import csv
-from pydoc import classname
-from unittest.main import main
 import requests
 from bs4 import BeautifulSoup
 import datetime
